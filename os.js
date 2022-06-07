@@ -6,7 +6,8 @@ export const osFunc = (act) => {
             const data = cpus();
             const cp = data.length;
             console.log('cpus length: ', cp);
-            console.log(data[0].model);
+            console.log('Model: ', data[0].model);
+            console.log('Speed: ', data[0].speed);
             break;
 
         case '--EOL':
