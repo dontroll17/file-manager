@@ -1,9 +1,12 @@
-import { readFile, writeFile, rename, unlink } from 'fs/promises';
+import { createReadStream } from 'fs';
+import { writeFile, rename, unlink } from 'fs/promises';
 
 const read = async (pathToFile) => {
     try {
-        const data = await readFile(pathToFile);
-        console.log(data.toString());
+        const data = createReadStream(pathToFile);
+        for await(let chunk of data) {
+            console.log(chunk.toString());
+        }
     } catch(e) {
         console.log('Operation failed');
     }
