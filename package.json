@@ -1,0 +1,12 @@
+{
+  "name": "file_manager",
+  "version": "1.0.0",
+  "description": "task_2",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js -- --username=Best_user"
+  },
+  "author": "dontroll17",
+  "license": "ISC"
+}
