@@ -16,7 +16,9 @@ const changeDir = async(pathToDir) => {
 const list = async () => {
     try {
         const files = await readdir(dirname);
-        console.log(files);
+        for(let file of files) {
+            console.log(file);
+        }
     }catch(e) {
         console.log('Operation failed');
     }
