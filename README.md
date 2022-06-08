@@ -1,7 +1,9 @@
 # File manager
 
-# npm run start - start app
+## Description
+npm run start - start app
 
+```bash
 ## .exit - exit
 ## ls - list
 ## cd (path) -change directory 
@@ -14,3 +16,4 @@
 ## rn (path_to_file new_filename) - rename file
 ## rm (path_to_file) - delete file
 ## mv (path_to_file, destination_path) - move file
+```
