@@ -6,6 +6,7 @@ import { changeDir, list, upDir } from './navigation.js';
 import { osFunc } from './os.js';
 import { calcHash } from './hash.js';
 import { exit } from './exit.js';
+import { FAIL } from './constants.js';
 
 const arg = process.argv.slice(2);
 
@@ -83,8 +84,8 @@ readline.on('line', async line => {
 
             default: console.log('Invalid input');
         }
-    }catch(e) {
-        console.log('Operation failed')
+    } catch(e) {
+        console.log(FAIL);
     }
 });
 

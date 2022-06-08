@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { readFile } from 'fs/promises';
+import { FAIL } from './constants.js';
 
 export const calcHash = async (pathToFile) => {
     try {
@@ -9,6 +10,6 @@ export const calcHash = async (pathToFile) => {
         console.log(hash);
         return hash;
     }catch(e) {
-        console.error('Operation failed');
+        console.error(FAIL);
     }
 }

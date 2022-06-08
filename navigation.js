@@ -1,6 +1,7 @@
 import { chdir, cwd } from 'process';
 import { readdir } from 'fs/promises';
 import { dirname as pathDirname } from 'path';
+import { FAIL } from './constants.js';
 
 let dirname;
 
@@ -14,7 +15,7 @@ const changeDir = (pathToDir) => {
         chdir(pathToDir);
         setDirName();
     } catch(e) {
-        console.log('Operation failed');
+        console.log(FAIL);
     }
 }
 
@@ -23,18 +24,19 @@ const upDir = () => {
         chdir(pathDirname(cwd()));
         setDirName();
     } catch(e) {
-        console.log('Operation failed');
+        console.log(FAIL);
     }
 }
 
 const list = async () => {
     try {
         const files = await readdir(dirname);
+        
         for(let file of files) {
             console.log(file);
         }
-    }catch(e) {
-        console.log('Operation failed');
+    } catch(e) {
+        console.log(FAIL);
     }
 }
 

@@ -1,6 +1,7 @@
 import { createReadStream, createWriteStream } from 'fs';
 import { createBrotliCompress, createBrotliDecompress} from 'zlib';
 import { pipeline } from 'stream/promises';
+import { FAIL } from './constants.js';
 
 const compress = async (filename, newFileName) => {
     const zip = createBrotliCompress();
@@ -10,7 +11,7 @@ const compress = async (filename, newFileName) => {
     try {
         await pipeline(read, zip, write);
     } catch(e) {
-        console.log('Operation failed');
+        console.log(FAIL);
     }
 }
 
@@ -22,7 +23,7 @@ const decompress = async (filename, newFileName) => {
     try {
         await pipeline(read, zip, write);
     } catch(e) {
-        console.log('Operation failed');
+        console.log(FAIL);
     }
 }
 
