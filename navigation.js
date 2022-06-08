@@ -9,21 +9,21 @@ const setDirName = () => {
     console.log(`You are currently in ${dirname}`);
 }
 
-const changeDir = async(pathToDir) => {
+const changeDir = (pathToDir) => {
     try {
         chdir(pathToDir);
         setDirName();
     } catch(e) {
-        console.log(e);
+        console.log('Operation failed');
     }
 }
 
-const upDir = async() => {
+const upDir = () => {
     try {
         chdir(pathDirname(cwd()));
         setDirName();
     } catch(e) {
-        console.log(e);
+        console.log('Operation failed');
     }
 }
 
