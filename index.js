@@ -2,7 +2,7 @@ import { createInterface } from 'readline';
 import { homedir } from 'os';
 import { read, create, renameFile, remove } from './files.js';
 import { compress, decompress } from './zip.js';
-import { changeDir, list } from './navigation.js';
+import { changeDir, list, upDir } from './navigation.js';
 import { osFunc } from './os.js';
 import { calcHash } from './hash.js';
 import { exit } from './exit.js';
@@ -35,6 +35,10 @@ readline.on('line', async line => {
 
             case 'ls':
                 list();
+                break;
+
+            case 'up':
+                upDir();
                 break;
 
             case 'os':

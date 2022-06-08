@@ -1,13 +1,27 @@
 import { chdir, cwd } from 'process';
 import { readdir } from 'fs/promises';
+import { dirname as pathDirname } from 'path';
 
 let dirname;
+
+const setDirName = () => {
+    dirname = cwd();
+    console.log(`You are currently in ${dirname}`);
+}
 
 const changeDir = async(pathToDir) => {
     try {
         chdir(pathToDir);
-        dirname = cwd();
-        console.log(`You are currently in ${pathToDir}`);
+        setDirName();
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+const upDir = async() => {
+    try {
+        chdir(pathDirname(cwd()));
+        setDirName();
     } catch(e) {
         console.log(e);
     }
@@ -24,4 +38,4 @@ const list = async () => {
     }
 }
 
-export { changeDir, list }
+export { changeDir, list, upDir }
