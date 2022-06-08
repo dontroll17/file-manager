@@ -1,5 +1,5 @@
-import { createReadStream } from 'fs';
-import { writeFile, rename, unlink } from 'fs/promises';
+import { createReadStream, constants } from 'fs';
+import { writeFile, rename, unlink, copyFile } from 'fs/promises';
 
 const read = async (pathToFile) => {
     try {
@@ -15,7 +15,7 @@ const read = async (pathToFile) => {
 const create = async (name) => {
     try {
         await writeFile(name, '', { flag: 'wx+' });
-    }catch(e) {
+    } catch(e) {
         console.log('Operation failed');
     }
 }
@@ -31,9 +31,18 @@ const renameFile = async (oldname, newname) => {
 const remove = async (fileName) => {
     try {
         await unlink(fileName);
-    }catch(e) {
+    } catch(e) {
         console.log('Operation failed');
     }
 }
 
-export { read, create, renameFile, remove }
+const move = async (pathToFile, destination) => {
+    try {
+        await copyFile(pathToFile, destination, constants.COPYFILE_EXCL);
+        await unlink(pathToFile);
+    } catch(e) {
+        console.log('Operation failed');
+    }
+}
+
+export { read, create, renameFile, remove, move }

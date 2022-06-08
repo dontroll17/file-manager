@@ -1,6 +1,6 @@
 import { createInterface } from 'readline';
 import { homedir } from 'os';
-import { read, create, renameFile, remove } from './files.js';
+import { read, create, renameFile, remove, move } from './files.js';
 import { compress, decompress } from './zip.js';
 import { changeDir, list, upDir } from './navigation.js';
 import { osFunc } from './os.js';
@@ -64,7 +64,10 @@ readline.on('line', async line => {
             case 'rm':
                 remove(opt);
                 break;
-            
+
+            case 'mv':
+                move(opt, opt2);
+                break;
 
             case 'compress':
                 compress(opt, opt2);
