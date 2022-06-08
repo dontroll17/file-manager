@@ -13,3 +13,4 @@
 ## add (file) - create new file
 ## rn (path_to_file new_filename) - rename file
 ## rm (path_to_file) - delete file
+## mv (path_to_file, destination_path) - move file
