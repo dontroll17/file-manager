@@ -1,7 +1,7 @@
 {
   "name": "file_manager",
   "version": "1.0.0",
-  "description": "task_2",
+  "description": "task_2 File manager",
   "main": "index.js",
   "type": "module",
   "scripts": {
