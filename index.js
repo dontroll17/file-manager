@@ -1,6 +1,6 @@
 import { createInterface } from 'readline';
 import { homedir } from 'os';
-import { read, create, renameFile, remove, move } from './files.js';
+import { read, create, renameFile, remove, move, copy } from './files.js';
 import { compress, decompress } from './zip.js';
 import { changeDir, list, upDir } from './navigation.js';
 import { osFunc } from './os.js';
@@ -27,7 +27,7 @@ const lineComp = (line) => {
 
 readline.on('line', async line => {
     try {
-        const [command, opt, opt2] = lineComp(line);
+        const [command, option, option2] = lineComp(line);
 
         switch(command) {
             case '.exit':
@@ -43,43 +43,47 @@ readline.on('line', async line => {
                 break;
 
             case 'os':
-                osFunc(opt);
+                osFunc(option);
                 break;
 
             case 'hash':
-                calcHash(opt);
+                calcHash(option);
                 break;
 
             case 'cat':
-                read(opt);
+                read(option);
                 break;
 
             case 'add':
-                create(opt);
+                create(option);
                 break;
             
             case 'rn':
-                renameFile(opt, opt2);
+                renameFile(option, option2);
                 break;
 
             case 'rm':
-                remove(opt);
+                remove(option);
                 break;
 
             case 'mv':
-                move(opt, opt2);
+                move(option, option2);
+                break;
+            
+            case 'cp':
+                copy(option, option2);
                 break;
 
             case 'compress':
-                compress(opt, opt2);
+                compress(option, option2);
                 break;
 
             case 'decompress':
-                decompress(opt, opt2);
+                decompress(option, option2);
                 break;
 
             case 'cd':
-                changeDir(opt);
+                changeDir(option);
                 break;
 
             default: console.log('Invalid input');
