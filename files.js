@@ -46,4 +46,12 @@ const move = async (pathToFile, destination) => {
     }
 }
 
-export { read, create, renameFile, remove, move }
+const copy = async (pathToFile, pathToCopy) => {
+    try {
+        await copyFile(pathToFile, pathToCopy, constants.COPYFILE_EXCL);
+    } catch(e) {
+        console.log(FAIL);
+    }
+}
+
+export { read, create, renameFile, remove, move, copy }
