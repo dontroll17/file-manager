@@ -5,7 +5,7 @@ import { exit } from './exit.js';
 import { homedir } from 'os';
 import { changeDir, dirname, list, upDir, whreami } from './navigation.js';
 import { operationSystem } from './os.js';
-import { read, create, renameFile } from './fs.js';
+import { read, create, renameFile, copy, remove, move } from './fs.js';
 
 const argv = process.argv.slice(2);
 
@@ -64,6 +64,21 @@ readline.on('line', async (line) => {
                 whreami(dirname);
                 break;
 
+            case 'cp':
+                await copy(optionOne, optionTwo);
+                whreami(dirname);
+                break;
+
+            case 'rm':
+                await remove(optionOne);
+                whreami(dirname);
+                break;
+
+            case 'mv':
+                await move(optionOne, optionTwo);
+                whreami(dirname);
+                break;
+                
             default: console.log('Invalid input');
         }
     } catch(e) {
