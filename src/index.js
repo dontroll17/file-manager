@@ -5,6 +5,8 @@ import { exit } from './exit.js';
 import { homedir } from 'os';
 import { changeDir, dirname, list, upDir, whreami } from './navigation.js';
 import { operationSystem } from './os.js';
+import { read, create, renameFile } from './fs.js';
+
 const argv = process.argv.slice(2);
 
 const username = argv.filter(str => {
@@ -15,6 +17,8 @@ const readline = createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
+
 
 readline.on('line', async (line) => {
     try {
@@ -42,8 +46,24 @@ readline.on('line', async (line) => {
 
             case 'os':
                 operationSystem(optionOne);
+                whreami(dirname);
                 break;
             
+            case 'cat':
+                await read(optionOne);
+                whreami(dirname);
+                break;
+            
+            case 'add':
+                create(optionOne);
+                whreami(dirname);
+                break;
+
+            case 'rn':
+                renameFile(optionOne, optionTwo);
+                whreami(dirname);
+                break;
+
             default: console.log('Invalid input');
         }
     } catch(e) {

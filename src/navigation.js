@@ -14,6 +14,8 @@ export const whreami = (dirname) => {
 
 export const changeDir = (pathToDir) => {
     try {
+        if(!pathToDir) return;
+        
         process.chdir(pathToDir);
         setDir()
     } catch(e) {
