@@ -2,6 +2,8 @@ import { createInterface } from 'readline';
 import { stringHandler } from './stringHandler.js';
 import { FAIL } from './constants.js';
 import { exit } from './exit.js';
+import { homedir } from 'os';
+import { changeDir, dirname, list, upDir, whreami } from './navigation.js';
 
 const argv = process.argv.slice(2);
 
@@ -23,11 +25,36 @@ readline.on('line', async (line) => {
                 exit(username);
                 break;
 
-            case 'user':
-                console.log(username);
+            case 'cd':
+                changeDir(optionOne);
+                whreami(dirname);
                 break;
+
+            case 'up':
+                upDir();
+                whreami(dirname);
+                break;
+
+            case 'ls':
+                list();
+                whreami(dirname);
+                break;
+
+            default: console.log('Invalid input');
         }
     } catch(e) {
         console.error(FAIL);
     }
 });
+
+readline.on('SIGINT', () => {
+    exit(username);
+});
+
+const boostrap = () => {
+    console.log(`Welcome to the File Manager, ${username}!`);
+    changeDir(homedir());
+    whreami(dirname);
+}
+
+boostrap();
