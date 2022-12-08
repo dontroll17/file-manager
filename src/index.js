@@ -4,7 +4,7 @@ import { FAIL } from './constants.js';
 import { exit } from './exit.js';
 import { homedir } from 'os';
 import { changeDir, dirname, list, upDir, whreami } from './navigation.js';
-
+import { operationSystem } from './os.js';
 const argv = process.argv.slice(2);
 
 const username = argv.filter(str => {
@@ -40,6 +40,10 @@ readline.on('line', async (line) => {
                 whreami(dirname);
                 break;
 
+            case 'os':
+                operationSystem(optionOne);
+                break;
+            
             default: console.log('Invalid input');
         }
     } catch(e) {
