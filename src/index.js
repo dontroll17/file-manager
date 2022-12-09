@@ -110,7 +110,7 @@ readline.on('SIGINT', () => {
 const boostrap = () => {
     console.log(`Welcome to the File Manager, ${username}!`);
     changeDir(homedir());
-    whreami(dirname);
+    whereami(dirname);
 }
 
 boostrap();
