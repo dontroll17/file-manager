@@ -8,7 +8,7 @@ const setDir = () => {
     dirname = process.cwd();
 }
 
-export const whreami = (dirname) => {
+export const whereami = (dirname) => {
     console.log(`You are currently in ${dirname}`);
 }
 

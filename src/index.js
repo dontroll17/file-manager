@@ -3,10 +3,11 @@ import { stringHandler } from './stringHandler.js';
 import { FAIL } from './constants.js';
 import { exit } from './exit.js';
 import { homedir } from 'os';
-import { changeDir, dirname, list, upDir, whreami } from './navigation.js';
+import { changeDir, dirname, list, upDir, whereami } from './navigation.js';
 import { operationSystem } from './os.js';
 import { read, create, renameFile, copy, remove, move } from './fs.js';
 import { calculateHash } from './hash.js';
+import { compress, decompress } from './zip.js';
 
 const argv = process.argv.slice(2);
 
@@ -32,57 +33,67 @@ readline.on('line', async (line) => {
 
             case 'cd':
                 changeDir(optionOne);
-                whreami(dirname);
+                whereami(dirname);
                 break;
 
             case 'up':
                 upDir();
-                whreami(dirname);
+                whereami(dirname);
                 break;
 
             case 'ls':
                 list();
-                whreami(dirname);
+                whereami(dirname);
                 break;
 
             case 'os':
                 operationSystem(optionOne);
-                whreami(dirname);
+                whereami(dirname);
                 break;
             
             case 'cat':
                 await read(optionOne);
-                whreami(dirname);
+                whereami(dirname);
                 break;
             
             case 'add':
                 create(optionOne);
-                whreami(dirname);
+                whereami(dirname);
                 break;
 
             case 'rn':
                 renameFile(optionOne, optionTwo);
-                whreami(dirname);
+                whereami(dirname);
                 break;
 
             case 'cp':
                 await copy(optionOne, optionTwo);
-                whreami(dirname);
+                whereami(dirname);
                 break;
 
             case 'rm':
                 await remove(optionOne);
-                whreami(dirname);
+                whereami(dirname);
                 break;
 
             case 'mv':
                 await move(optionOne, optionTwo);
-                whreami(dirname);
+                whereami(dirname);
                 break;
             
             case 'hash':
                 await calculateHash(optionOne);
-                whreami(dirname);
+                whereami(dirname);
+                break;
+                
+            case 'compress':
+                await compress(optionOne, optionTwo);
+                whereami(dirname);
+                break;
+
+            case 'decompress':
+                await decompress(optionOne, optionTwo);
+                whereami(dirname);
                 break;
                 
             default: console.log('Invalid input');
