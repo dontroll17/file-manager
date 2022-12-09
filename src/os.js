@@ -1,4 +1,4 @@
-import { arch, cpus, EOL, homedir } from 'os';
+import { arch, cpus, EOL, homedir,userInfo } from 'os';
 
 export const operationSystem = (flag) => {
     switch(flag) {
@@ -22,6 +22,10 @@ export const operationSystem = (flag) => {
             console.log(arch());
             break;
 
+        case '--username':
+            console.log(userInfo().username);
+            break;
+            
         default: console.log('Invalid input');
     }
 }

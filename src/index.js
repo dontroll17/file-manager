@@ -6,6 +6,7 @@ import { homedir } from 'os';
 import { changeDir, dirname, list, upDir, whreami } from './navigation.js';
 import { operationSystem } from './os.js';
 import { read, create, renameFile, copy, remove, move } from './fs.js';
+import { calculateHash } from './hash.js';
 
 const argv = process.argv.slice(2);
 
@@ -76,6 +77,11 @@ readline.on('line', async (line) => {
 
             case 'mv':
                 await move(optionOne, optionTwo);
+                whreami(dirname);
+                break;
+            
+            case 'hash':
+                await calculateHash(optionOne);
                 whreami(dirname);
                 break;
                 
