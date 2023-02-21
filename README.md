@@ -2,6 +2,7 @@
 
 ## Description
 npm run start - starting application
+-- --username="User" 
 
 ```bash
 .exit - exit
